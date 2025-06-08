@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Baby!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #fce4ec 0%, #e3f2fd 100%); /* Soft pink to light blue gradient */
+            font-family: 'Quicksand', sans-serif;
+            overflow: hidden; /* Hide any overflowing elements */
+            position: relative;
+        }
+
+        /* --- Floating Balloons (Hearts and Stars) --- */
+        .balloon {
+            position: absolute;
+            background-color: #ff80a0; /* Rose pink */
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: floatUp 10s infinite linear;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            z-index: 0; /* Keep behind the card */
+        }
+        .balloon.heart-shape {
+            transform: rotate(-45deg);
+        }
+        .balloon.heart-shape::before,
+        .balloon.heart-shape::after {
+            content: '';
+            width: inherit;
+            height: inherit;
+            background-color: inherit;
+            border-radius: 50%;
+            position: absolute;
+        }
+        .balloon.heart-shape::before { top: -50%; left: 0; }
+        .balloon.heart-shape::after { top: 0; left: 50%; }
+
+        .balloon.star-shape {
+            background-color: #ffd700; /* Gold */
+            width: 25px;
+            height: 25px;
+            transform: rotate(0deg); /* Stars don't need rotation */
+            animation: floatUp 12s infinite linear;
+        }
+        /* Individual balloon positioning and sizing */
+        .balloon:nth-child(1) { top: 100%; left: 15%; width: 30px; height: 30px; animation-delay: 0s; }
+        .balloon:nth-child(2) { top: 100%; right: 20%; width: 40px; height: 40px; animation-delay: 2s; background-color: #a7d9f7; /* Light blue */ }
+        .balloon:nth-child(3) { top: 100%; left: 40%; width: 25px; height: 25px; animation-delay: 4s; }
+        .balloon:nth-child(4) { top: 100%; right: 5%; width: 35px; height: 35px; animation-delay: 1s; background-color: #ffaad5; /* Lighter pink */ }
+        .balloon:nth-child(5) { top: 100%; left: 25%; width: 20px; height: 20px; animation-delay: 3s; opacity: 0.6; }
+        .balloon.star-shape:nth-of-type(6) { top: 100%; left: 50%; animation-delay: 0.5s; }
+        .balloon.star-shape:nth-of-type(7) { top: 100%; right: 35%; animation-delay: 2.5s; width: 20px; height: 20px; }
+
+        /* --- Greeting Card --- */
+        .card {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            padding: 30px;
+            width: 340px; /* Slightly wider for the image */
+            text-align: center;
+            opacity: 0; /* Hidden initially */
+            transform: scale(0.8); /* Start slightly smaller */
+            animation: fadeInScale 1s forwards ease-out; /* Animation on load */
+            position: relative;
+            z-index: 1; /* Above balloons */
+            border: 3px solid #ffccd9; /* Soft border */
+        }
+
+        .card-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%; /* Circular image */
+            object-fit: cover; /* Ensures image covers the area nicely */
+            border: 4px solid #ffb3c1; /* Matching border for the image */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            animation: floatAndPulse 3s infinite ease-in-out; /* Gentle animation for image */
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive; /* Elegant script font */
+            color: #e91e63; /* Deep pink */
+            font-size: 3.2em;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        p {
+            color: #6a6a6a;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .highlight {
+            color: #d81b60; /* Slightly darker pink for emphasis */
+            font-weight: 600;
+        }
+
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            color: #673ab7; /* Soft purple */
+            font-size: 1.8em;
+            margin-top: 25px;
+            display: block;
+            border-top: 1px dashed #f0f0f0;
+            padding-top: 15px;
+        }
+
+        /* --- Animations --- */
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(-45deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-120vh) rotate(-45deg); opacity: 0; }
+        }
+        .balloon.star-shape@keyframes floatUp { /* Adjust for star rotation */
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes fadeInScale {
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes floatAndPulse {
+            0% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-5px) scale(1.02); }
+            100% { transform: translateY(0) scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="balloon heart-shape"></div>
+    <div class="balloon heart-shape"></div>
+    <div class="balloon heart-shape"></div>
+    <div class="balloon heart-shape"></div>
+    <div class="balloon heart-shape"></div>
+    <div class="balloon star-shape"></div>
+    <div class="balloon star-shape"></div>
+
+    <div class="card">
+        <img src="img.png" alt="Gorgeous Girlfriend" class="card-image">
+
+        <h1>Happy Birthday!</h1>
+        <p>To my amazing girlfriend, the brightest star in <span class="highlight">In my universe</span> </p>
+        <p>Every moment with you is a gift, and I'm so incredibly grateful for your warmth, your laughter, and your beautiful heart.</p>
+        <p>May your special day be as lovely and magical as you are. I love you more than words can say! I made this code for you;)</p>
+        <span 
+<span class="highlight">Ich liebe dich</span> </p>
+			<span
+class="signature">Your Jeijei</span>
+
+    </div>
+</body>
